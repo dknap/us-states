@@ -24,13 +24,9 @@ while guessing:
     user_guess = screen.textinput(title=f"{points}/{MAX_POINTS} States Correct", prompt="What's another state's name? ")
     print(user_guess)
     for state in range(len(states)-1):
-        if user_guess.capitalize() == states[state]:
+        if user_guess.title() == states[state]:
             show_state = State(states[state], data["x"][state], data["y"][state])
-            if user_guess.capitalize() not in correct_guesses:
+            if user_guess.title() not in correct_guesses:
                 correct_guesses.append(states[state])
                 points += 1
             print(correct_guesses)
-
-#TODO: record the correct guesses in a list
-#TODO: keep track of the score
-
