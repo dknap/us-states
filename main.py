@@ -1,9 +1,9 @@
 import turtle
 import pandas
+from state import State
 
 DATA_FILE = "50_states.csv"
 MAX_POINTS = 50
-FONT = ("Arial", 16, "normal")
 points = 0
 correct_guesses = []
 
@@ -25,15 +25,12 @@ while guessing:
     print(user_guess)
     for state in range(len(states)-1):
         if user_guess.capitalize() == states[state]:
-            # turtle.write(states[state], font=FONT)
-            # turtle.setposition(data["x"][state], data["y"][state])
-            correct_guesses.append(states[state])
-            states.pop(state)
-            points += 1
+            show_state = State(states[state], data["x"][state], data["y"][state])
+            if user_guess.capitalize() not in correct_guesses:
+                correct_guesses.append(states[state])
+                points += 1
             print(correct_guesses)
 
-
-#TODO: write correct guesses onto the map
 #TODO: record the correct guesses in a list
 #TODO: keep track of the score
 
