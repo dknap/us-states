@@ -18,9 +18,7 @@ data = pandas.read_csv(DATA_FILE)
 states = data["state"].to_list()
 print(states)
 
-guessing = True
-while guessing:
-
+while len(correct_guesses) < 50:
     user_guess = screen.textinput(title=f"{points}/{MAX_POINTS} States Correct", prompt="What's another state's name? ")
     print(user_guess)
     for state in range(len(states)):
@@ -30,3 +28,18 @@ while guessing:
                 correct_guesses.append(states[state])
                 points += 1
             print(correct_guesses)
+    if user_guess == "exit" or user_guess == "Exit":
+        missing_list = []
+        for state in states:
+            if state not in correct_guesses:
+                missing_list.append(state)
+
+        to_learn = pandas.DataFrame(missing_list)
+        # print(to_learn)
+        to_learn.to_csv("to_learn.csv")
+        break
+
+
+
+
+
